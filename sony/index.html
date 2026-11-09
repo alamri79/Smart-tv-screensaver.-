@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>سكينة — نسخة سوني المريحة للنظر</title>
+<style>
+:root{color-scheme:dark;--bg:#090f16;--panel:#111d29;--line:#253744;--gold:#d4bb82;--text:#e7ebea;--muted:#9aaab2}*{box-sizing:border-box}html,body{height:100%;margin:0}body{font-family:Tahoma,Arial,sans-serif;background:radial-gradient(ellipse at 25% 15%,#172630 0%,var(--bg) 65%);color:var(--text);overflow:hidden}.screen{height:100dvh;min-height:530px;padding:clamp(18px,3vw,54px);display:flex;flex-direction:column;gap:clamp(12px,2vh,25px);position:relative}.screen:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 30%,#ffffff03 50%,transparent 70%)}header,.hero,.prayers,.shortcuts,footer{position:relative;z-index:1}header{display:flex;justify-content:space-between;align-items:center;gap:18px}.brand{font-size:clamp(17px,1.6vw,26px);letter-spacing:.03em;color:var(--gold)}.place{color:var(--muted);font-size:clamp(12px,1vw,17px)}.hero{display:flex;justify-content:space-between;align-items:center;gap:30px;flex:1;min-height:0}.clock{font-size:clamp(70px,10vw,185px);line-height:1;font-weight:300;font-variant-numeric:tabular-nums;letter-spacing:-.06em;white-space:nowrap;direction:ltr}.seconds{font-size:.32em;letter-spacing:0;color:var(--gold);vertical-align:baseline}.ampm{font-size:clamp(16px,1.7vw,28px);color:var(--muted);margin-top:10px}.dates{display:flex;flex-direction:column;gap:12px;text-align:left;color:#c6d0d1;font-size:clamp(15px,1.6vw,27px)}.dates .hijri{color:var(--gold)}.section-title{font-size:clamp(15px,1.3vw,21px);color:#b7c7c8;margin:0 0 10px}.prayer-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}.prayer{background:#101c27c9;border:1px solid var(--line);border-radius:17px;padding:clamp(12px,1.4vw,24px);text-align:center;min-width:0}.prayer.active{border-color:#a88c54;background:#26302e;box-shadow:0 0 24px #a88c5418}.prayer .name{color:#afbec4;font-size:clamp(13px,1.2vw,20px)}.prayer .time{font-size:clamp(19px,2vw,34px);font-variant-numeric:tabular-nums;margin-top:12px;direction:ltr}.prayer.active .name,.prayer.active .time{color:#e6c88a}.next{color:var(--gold);font-size:clamp(12px,1vw,17px);margin-top:12px;min-height:20px}.shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.tile{appearance:none;border:1px solid #34434b;border-radius:18px;background:linear-gradient(135deg,#1b2b35,#121d28);color:var(--text);text-align:right;padding:clamp(15px,1.7vw,26px);cursor:pointer;min-height:105px;transition:transform .2s,border-color .2s,background .2s;font-family:inherit}.tile:hover,.tile:focus-visible{outline:none;transform:translateY(-4px);border-color:var(--gold);background:#27343b}.tile .glyph{font-size:clamp(22px,2vw,35px);color:var(--gold)}.tile strong{display:block;font-size:clamp(15px,1.3vw,23px);margin-top:7px}.tile small{display:block;color:var(--muted);font-size:clamp(11px,.9vw,15px);margin-top:5px}footer{display:flex;justify-content:space-between;gap:12px;color:#7f939e;font-size:clamp(11px,.85vw,15px)}.dialog{position:fixed;inset:0;z-index:5;background:#03070bdf;display:none;align-items:center;justify-content:center;padding:30px}.dialog.open{display:flex}.dialog-box{background:#14212b;border:1px solid #657064;border-radius:20px;width:min(760px,100%);max-height:80vh;overflow:auto;padding:30px;line-height:2}.dialog-box h2{color:var(--gold);margin-top:0}.close{background:#34414a;color:white;border:1px solid #64717a;border-radius:10px;padding:9px 18px;font-size:18px;cursor:pointer}.dialog-box p{white-space:pre-line}body.shift .screen{transform:translate(5px,3px)}.screen{transition:transform 15s linear}@media(max-width:850px){body{overflow:auto}.screen{min-height:100dvh;height:auto}.hero{flex-direction:column;align-items:flex-start}.dates{text-align:right}.clock{font-size:clamp(60px,12vw,100px)}.prayer-grid{grid-template-columns:repeat(3,1fr)}.shortcuts{grid-template-columns:repeat(2,1fr)}}@media(max-height:680px) and (min-width:851px){.screen{gap:8px;padding:20px 35px}.clock{font-size:clamp(70px,8vw,120px)}.prayer{padding:10px}.tile{min-height:85px;padding:12px}.hero{gap:15px}.prayer .time{margin-top:6px}.next{margin-top:6px}}
+
+/* Prominent prayer countdown for living-room viewing */
+.prayer-alert{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid #776443;border-radius:22px;background:linear-gradient(110deg,#24302e,#14212b);padding:clamp(14px,1.8vw,27px) clamp(20px,2.4vw,40px);min-height:120px}
+.alert-label{font-size:clamp(19px,2vw,35px);color:#e7d5ac;font-weight:bold}.alert-hint{font-size:clamp(13px,1.2vw,21px);color:#aebdc0;margin-top:8px}.alert-time{direction:ltr;font-size:clamp(57px,6.4vw,116px);line-height:1;font-weight:700;letter-spacing:.025em;color:#f0d49a;font-variant-numeric:tabular-nums;white-space:nowrap}.alert-units{font-size:clamp(12px,1vw,18px);color:#aebdc0;text-align:left;margin-top:5px}.prayer-alert.soon{border-color:#e1b96b;background:linear-gradient(110deg,#413520,#1a252d)}.prayer-alert.urgent{border-color:#f3c56c;background:linear-gradient(110deg,#493520,#20252b);box-shadow:0 0 26px #c79b4430}.prayer-alert.entered{border-color:#c6d5a5;background:linear-gradient(110deg,#294136,#172c2a)}.prayer-alert.entered .alert-time{color:#e4f3cb;font-size:clamp(36px,4vw,72px)}
+@media(max-width:850px){.prayer-alert{flex-direction:column;align-items:stretch}.alert-time{font-size:clamp(54px,11vw,95px)}.alert-units{text-align:right}}
+@media(max-height:800px) and (min-width:851px){.prayer-alert{min-height:85px;padding:10px 24px}.alert-time{font-size:clamp(45px,5vw,82px)}.hero{flex:.7}.tile{min-height:72px}}
+
+/* Accessibility mode for large television and low vision */
+:root{--bg:#000;--panel:#090909;--line:#777;--gold:#fff;--text:#fff;--muted:#f0f0f0}
+body{background:#000;color:#fff}
+.screen{padding:clamp(16px,2.4vw,42px);gap:clamp(10px,1.5vh,22px)}
+.screen:after{display:none}
+.brand{color:#fff;font-size:clamp(24px,2.3vw,42px);font-weight:700}
+.place{color:#fff;font-size:clamp(17px,1.5vw,27px)}
+.hero{flex:0 0 auto;min-height:0}
+.clock{font-size:clamp(80px,8vw,155px);font-weight:700;letter-spacing:0}
+.seconds{color:#fff}.ampm{font-size:clamp(20px,2vw,34px);color:#fff}
+.dates{color:#fff;font-size:clamp(19px,1.8vw,33px);font-weight:700}
+.dates .hijri{color:#fff}
+.prayer-alert,.prayer-alert.soon,.prayer-alert.urgent,.prayer-alert.entered{background:#101010;border:4px solid #fff;box-shadow:none;min-height:clamp(180px,29vh,310px);padding:clamp(18px,3vw,50px)}
+.alert-label{font-size:clamp(32px,3.1vw,59px);color:#fff}
+.alert-hint{font-size:clamp(22px,2vw,37px);color:#fff}
+.alert-time{font-size:clamp(88px,9vw,174px);color:#fff;letter-spacing:0}
+.prayer-alert.entered .alert-time{font-size:clamp(46px,5vw,90px);color:#fff}
+.alert-units{font-size:clamp(20px,1.8vw,32px);color:#fff}
+.section-title{color:#fff;font-size:clamp(22px,2vw,36px)}
+.prayer-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.prayer,.prayer.active{background:#080808;border:2px solid #777;border-radius:12px;padding:clamp(12px,1.4vw,23px);box-shadow:none}
+.prayer.active{background:#252525;border:4px solid #fff}
+.prayer .name,.prayer.active .name{color:#fff;font-size:clamp(21px,2vw,36px);font-weight:700}
+.prayer .time,.prayer.active .time{color:#fff;font-size:clamp(30px,3vw,53px);font-weight:700;margin-top:6px}
+.next{color:#fff;font-size:clamp(15px,1.3vw,24px)}
+.shortcuts,.shortcuts + *,footer{display:none}
+.screen>section:has(.shortcuts){display:none}
+.screen>section:nth-of-type(4){display:none}
+body.shift .screen{transform:translate(3px,2px)}
+@media(max-width:850px){.screen{height:auto;min-height:100vh}.hero{flex-direction:column;align-items:stretch}.clock{font-size:clamp(64px,11vw,110px)}.prayer-alert{flex-direction:column;align-items:stretch}.alert-time{font-size:clamp(65px,11vw,110px)}.prayer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-height:800px) and (min-width:851px){.prayer-alert{min-height:160px}.alert-time{font-size:clamp(76px,8vw,135px)}.clock{font-size:clamp(75px,7vw,120px)}.prayer{padding:8px}.prayer .time{font-size:clamp(27px,2.4vw,43px)}}
+
+/* Sony BRAVIA: centered, low-glare, peripheral-field-friendly layout */
+:root{--text:#d5d9d5;--gold:#d5d9d5;--muted:#bac2be}
+body{background:#050607!important;color:#d5d9d5!important}
+.screen{width:100%;padding:clamp(14px,2vh,30px) clamp(18px,4vw,75px);gap:clamp(8px,1.3vh,18px);align-items:center;justify-content:center;overflow:hidden}
+header{width:min(84vw,1450px);justify-content:center;gap:18px;opacity:.65}
+.brand{font-size:clamp(18px,1.5vw,29px);color:#bac2be}
+.place{display:none}
+.hero{width:min(84vw,1450px);display:flex;flex-direction:column;justify-content:center;gap:4px;align-items:center;flex:0 0 auto;text-align:center}
+.clock{font-size:clamp(66px,8vw,148px);font-weight:600;color:#d5d9d5;line-height:1.02}
+.seconds{font-size:.27em;color:#9ca8a1}.ampm{font-size:clamp(18px,1.6vw,28px);margin:0;color:#b6c0b9}
+.dates{display:flex;flex-direction:row;justify-content:center;flex-wrap:wrap;gap:16px;text-align:center;font-size:clamp(15px,1.25vw,24px);color:#b4bdb7}
+.dates .hijri{color:#b4bdb7}
+.prayer-alert,.prayer-alert.soon,.prayer-alert.urgent,.prayer-alert.entered{width:min(84vw,1450px);min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:clamp(12px,2vh,30px);border:2px solid #75847a;border-radius:18px;background:#101413;box-shadow:none;text-align:center}
+.alert-label{font-size:clamp(28px,2.8vw,52px);color:#d7dfd8}.alert-hint{font-size:clamp(17px,1.45vw,27px);color:#bac2be;margin-top:2px}
+.alert-time{font-size:clamp(80px,9vw,170px);color:#d9dfd9;line-height:1.06;font-weight:700}
+.alert-units{font-size:clamp(15px,1.25vw,23px);color:#bac2be;text-align:center}
+.prayer-alert.entered .alert-time{font-size:clamp(34px,4vw,72px);color:#d9dfd9}
+.screen>section:has(.prayer-grid){width:min(84vw,1450px)}
+.section-title{text-align:center;font-size:clamp(17px,1.6vw,29px);color:#bec8c0;margin:0 0 8px}
+#countdown{display:none}
+.prayer-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.prayer,.prayer.active{padding:clamp(6px,1vh,15px);border:1px solid #54635b;background:#0c100e;border-radius:10px}
+.prayer.active{border:2px solid #b3c0b5;background:#1b2420}
+.prayer .name,.prayer.active .name{font-size:clamp(16px,1.45vw,26px);color:#c5d0c7}
+.prayer .time,.prayer.active .time{font-size:clamp(24px,2.35vw,43px);color:#d5ddd5;margin-top:2px}
+.next{font-size:clamp(12px,.95vw,17px);color:#aeb8b0;text-align:center;margin-top:5px}
+body.shift .screen{transform:none}.screen{transition:none}
+@media(max-height:780px) and (min-width:851px){.clock{font-size:clamp(60px,6vw,110px)}.alert-time{font-size:clamp(72px,7vw,125px)}.prayer .time{font-size:clamp(21px,1.9vw,34px)}.prayer-alert{padding:10px}.screen{gap:7px}}
+@media(max-width:850px){body{overflow:auto}.screen{height:auto;min-height:100vh;overflow:visible}.hero,.prayer-alert,.screen>section:has(.prayer-grid),header{width:95%}.dates{flex-direction:column;gap:3px}.alert-time{font-size:clamp(48px,10vw,85px)}.clock{font-size:clamp(58px,10vw,90px)}.prayer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Sony BRAVIA accessibility: central safe area, no animations, low glare */
+html,body{background:#080b0a!important}body{background:#080b0a!important;color:#d9e2d9!important}
+.screen{transform:none!important;transition:none!important;align-items:center;justify-content:center;gap:clamp(8px,1.4vh,18px);padding:clamp(14px,2vh,28px)}
+.screen:after{display:none!important}header{width:min(78vw,1280px)!important;justify-content:center!important}.brand{font-size:clamp(18px,1.8vw,30px)!important}.place{display:none!important}
+.hero{width:min(78vw,1280px)!important;flex:none!important;flex-direction:column!important;align-items:center!important;gap:2px!important;text-align:center!important}
+.clock{font-size:clamp(64px,7.2vw,130px)!important;font-weight:700!important;letter-spacing:0!important;color:#d9e2d9!important}.seconds{font-size:.26em!important;color:#b0bbb0!important}
+.ampm{font-size:clamp(18px,1.7vw,30px)!important;margin:0!important}.dates{display:flex!important;flex-direction:row!important;justify-content:center!important;gap:20px!important;text-align:center!important;font-size:clamp(16px,1.35vw,24px)!important}
+.prayer-alert,.prayer-alert.soon,.prayer-alert.urgent,.prayer-alert.entered{width:min(78vw,1280px)!important;min-height:clamp(180px,28vh,320px)!important;background:#111713!important;border:2px solid #8b9b8d!important;border-radius:20px!important;padding:clamp(15px,2.5vh,35px)!important;box-shadow:none!important;transition:none!important}
+.alert-label{font-size:clamp(28px,3vw,54px)!important;color:#e1e8de!important}.alert-hint{font-size:clamp(17px,1.5vw,27px)!important;color:#b7c6b8!important}
+.alert-time{font-size:clamp(74px,10vw,180px)!important;font-weight:800!important;color:#e0e9df!important;line-height:1.04!important;letter-spacing:0!important}
+.alert-units{font-size:clamp(16px,1.4vw,25px)!important;color:#c4d1c6!important;text-align:center!important}
+.screen>section:has(.prayer-grid){width:min(78vw,1280px)!important}.section-title{font-size:clamp(17px,1.6vw,28px)!important;text-align:center!important;margin:0 0 6px!important}
+.prayer-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}.prayer{padding:clamp(8px,1.1vh,16px)!important}.prayer .name,.prayer.active .name{font-size:clamp(17px,1.7vw,30px)!important}.prayer .time,.prayer.active .time{font-size:clamp(25px,2.6vw,47px)!important}
+.shortcuts,.screen>section:has(.shortcuts),footer{display:none!important}.next{font-size:clamp(12px,1vw,18px)!important;text-align:center!important;margin-top:4px!important}
+.settings-trigger{position:fixed;bottom:12px;left:12px;z-index:12;background:#202a23;border:1px solid #667567;border-radius:12px;color:#d9e2d9;padding:9px 13px;font-size:16px;font-family:inherit;cursor:pointer}
+.settings-panel{display:none;position:fixed;inset:0;z-index:20;background:#050705f5;align-items:center;justify-content:center;padding:25px}.settings-panel.open{display:flex}
+.settings-inner{width:min(720px,96vw);border:2px solid #8b9b8d;border-radius:18px;background:#111713;padding:25px;text-align:center}.settings-inner h2{font-size:28px}.settings-inner p{font-size:19px;line-height:1.7}
+.setting-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:15px 0}.setting-row button,.settings-close{font:inherit;font-size:21px;border:2px solid #8b9b8d;background:#243028;color:#f0f4ed;padding:13px 18px;border-radius:12px;cursor:pointer}.setting-row button:focus,.settings-close:focus,.settings-trigger:focus{outline:4px solid #fff}
+body.soft{--text:#b9c6b9}body.soft .clock,body.soft .alert-time,body.soft .alert-label{color:#b6c6b7!important}body.soft .prayer .name,body.soft .prayer .time{color:#b4c2b5!important}
+body.extra .clock{font-size:clamp(76px,9vw,170px)!important}body.extra .alert-time{font-size:clamp(85px,12vw,210px)!important}body.extra .prayer-grid{display:none!important}body.extra .screen>section:has(.prayer-grid) .section-title{display:none!important}
+body.left-focus .screen{margin-right:10vw}body.right-focus .screen{margin-left:10vw}
+@media(max-height:800px) and (min-width:851px){.clock{font-size:clamp(55px,5.5vw,105px)!important}.alert-time{font-size:clamp(65px,8vw,140px)!important}.prayer-alert{min-height:clamp(150px,26vh,220px)!important}.prayer .time{font-size:clamp(23px,2vw,38px)!important}}
+@media(max-width:850px){body{overflow:auto!important}.screen{height:auto!important;min-height:100vh!important}.hero,header,.prayer-alert,.screen>section:has(.prayer-grid){width:96%!important}.dates{flex-direction:column!important;gap:3px!important}.alert-time{font-size:clamp(48px,11vw,100px)!important}.clock{font-size:clamp(60px,11vw,110px)!important}.prayer-grid{grid-template-columns:repeat(2,1fr)!important}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Large-print automatic adhkar carousel, kept in the central field of view */
+.adhkar-panel{width:min(78vw,1280px);background:#111713;border:2px solid #77877a;border-radius:18px;padding:clamp(10px,1.5vh,20px);text-align:center;z-index:2;flex:0 0 auto}
+.adhkar-heading{font-size:clamp(18px,1.6vw,30px);color:#c8d5c9;margin-bottom:5px;font-weight:bold}
+.adhkar-text{font-size:clamp(24px,2.55vw,48px);font-weight:700;line-height:1.45;color:#e0e8df;max-width:100%;margin:auto;min-height:1.5em}
+.adhkar-meta{font-size:clamp(14px,1.15vw,21px);color:#b7c5b8;margin-top:4px}
+.adhkar-actions{display:flex;justify-content:center;gap:12px;margin-top:9px;flex-wrap:wrap}
+.adhkar-actions button{font:inherit;font-size:clamp(16px,1.25vw,24px);background:#26332b;border:2px solid #87998a;color:#e0e8df;border-radius:12px;padding:7px 20px;cursor:pointer;min-width:110px}
+.adhkar-actions button:focus-visible,.adhkar-actions button:focus{outline:4px solid #e5f1df;outline-offset:3px}
+body.soft .adhkar-text{color:#b6c6b7}
+body.extra .adhkar-text{font-size:clamp(30px,3.1vw,58px)}
+@media(max-height:850px) and (min-width:851px){.adhkar-panel{padding:8px}.adhkar-text{font-size:clamp(22px,2vw,38px);line-height:1.25}.adhkar-actions{margin-top:5px}.adhkar-actions button{padding:4px 14px}.prayer-grid{display:none!important}.screen>section:has(.prayer-grid){display:none!important}}
+@media(max-width:850px){.adhkar-panel{width:96%}.adhkar-text{font-size:clamp(23px,5vw,36px)}}
+</style>
+</head>
+<body>
+<main class="screen" id="screen"><header><div class="brand">✦ سكينة | شاشة المنزل</div><div class="place">أبوظبي، الإمارات العربية المتحدة <span id="status"></span></div></header>
+<section class="hero"><div><div class="clock" aria-label="الوقت"><span id="hm">--:--</span><span class="seconds" id="sec">:--</span></div><div class="ampm" id="ampm">—</div></div><div class="dates"><div id="greg">—</div><div class="hijri" id="hijri">—</div></div></section>
+<section class="prayer-alert" id="prayerAlert" role="status" aria-live="off"><div><div class="alert-label" id="alertLabel">الصلاة القادمة</div><div class="alert-hint" id="alertHint">الوقت المتبقي حتى الأذان</div></div><div><div class="alert-time" id="alertTime">--:--:--</div><div class="alert-units" id="alertUnits">ساعة : دقيقة : ثانية</div></div></section>
+<section><h2 class="section-title">مواقيت الصلاة <span id="countdown" style="float:left;color:var(--gold)"></span></h2><div class="prayer-grid" id="prayers"></div><div class="next" id="note">المواقيت حسابية تقريبية لأبوظبي؛ تحقق من المصدر الرسمي.</div></section>
+<section class="adhkar-panel" aria-label="أذكار الصباح والمساء"><div class="adhkar-heading" id="dhikrHeading">ذكر اليوم</div><div class="adhkar-text" id="dhikrText">سبحان الله وبحمده</div><div class="adhkar-meta" id="dhikrMeta">يُعرض الذكر تلقائيًا</div><div class="adhkar-actions"><button id="dhikrPrev" type="button">السابق</button><button id="dhikrPause" type="button">إيقاف التبديل</button><button id="dhikrNext" type="button">التالي</button></div></section>
+<section><h2 class="section-title">المكتبة الروحانية</h2><div class="shortcuts"><button class="tile" data-key="kahf"><span class="glyph">۞</span><strong>سورة الكهف</strong><small>قراءة • الجمعة</small></button><button class="tile" data-key="baqarah"><span class="glyph">۞</span><strong>سورة البقرة</strong><small>قراءة • القرآن الكريم</small></button><button class="tile" data-key="morning"><span class="glyph">☼</span><strong>أذكار الصباح</strong><small>أذكار مختارة</small></button><button class="tile" data-key="evening"><span class="glyph">☾</span><strong>أذكار المساء</strong><small>أذكار مختارة</small></button></div></section>
+<footer><span>اضغط OK أو Enter لفتح البطاقة • رجوع أو Escape للإغلاق</span><span>توقيت الإمارات UTC+4 • دون اتصال بالإنترنت</span></footer></main>
+<div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><div class="dialog-box"><button class="close" id="close">إغلاق ×</button><h2 id="dialog-title"></h2><p id="dialog-content"></p></div></div>
+<button id="settingsButton" class="settings-trigger" aria-label="إعدادات وضوح الشاشة">⚙ إعدادات العرض</button>
+<div id="settingsPanel" class="settings-panel" role="dialog" aria-modal="true" aria-label="إعدادات وضوح الشاشة"><div class="settings-inner"><h2>إعدادات راحة العين</h2><p>اختر ما يناسب خالك. يمكن تغيير هذه الخيارات في أي وقت باستخدام الريموت.</p><div class="setting-row"><button data-mode="normal">عرض واضح</button><button data-mode="soft">إضاءة نص أخف</button><button data-mode="extra">أرقام أكبر</button></div><p>مكان المعلومات على الشاشة</p><div class="setting-row"><button data-position="center">الوسط</button><button data-position="left">جهة اليسار</button><button data-position="right">جهة اليمين</button></div><button id="settingsClose" class="settings-close">إغلاق والعودة للشاشة</button><p style="font-size:15px">المواقيت تقريبية. الأذان الصوتي غير مضاف في هذه النسخة.</p></div></div>
+<script>
+(function(){'use strict';
+var TZ='Asia/Dubai',LAT=24.4539,LON=54.3773;var names=['الفجر','الشروق','الظهر','العصر','المغرب','العشاء'];var ids=['fajr','sunrise','dhuhr','asr','maghrib','isha'];var timings=[],lastDay='',lastFocus=null;
+function el(id){return document.getElementById(id)}
+function fmt(date,options){try{return new Intl.DateTimeFormat('ar-AE',Object.assign({timeZone:TZ},options)).format(date)}catch(e){return 'غير متاح'}}
+function dubaiParts(d){var s=new Date(d.getTime()+4*3600000);return {y:s.getUTCFullYear(),m:s.getUTCMonth()+1,day:s.getUTCDate(),h:s.getUTCHours(),min:s.getUTCMinutes(),sec:s.getUTCSeconds()}}
+function rad(x){return x*Math.PI/180}function deg(x){return x*180/Math.PI}function sin(x){return Math.sin(rad(x))}function cos(x){return Math.cos(rad(x))}function tan(x){return Math.tan(rad(x))}function asin(x){return deg(Math.asin(Math.max(-1,Math.min(1,x))))}function acos(x){return deg(Math.acos(Math.max(-1,Math.min(1,x))))}function atan2(y,x){return deg(Math.atan2(y,x))}function mod(a,b){return (a%b+b)%b}
+// NOAA-style solar coordinates, numerical solar altitude crossing; prayer angles are configurable.
+function julian(y,m,d){if(m<=2){y--;m+=12}var a=Math.floor(y/100),b=2-a+Math.floor(a/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+b-1524.5}
+function solar(jd){var T=(jd-2451545)/36525,L0=mod(280.46646+T*(36000.76983+.0003032*T),360),M=357.52911+T*(35999.05029-.0001537*T),e=.016708634-T*(.000042037+.0000001267*T);var C=sin(M)*(1.914602-T*(.004817+.000014*T))+sin(2*M)*(.019993-.000101*T)+sin(3*M)*.000289;var trueL=L0+C,omega=125.04-1934.136*T,lambda=trueL-.00569-.00478*sin(omega),eps0=23+(26+(21.448-T*(46.815+T*(.00059-T*.001813)))/60)/60,eps=eps0+.00256*cos(omega);var decl=asin(sin(eps)*sin(lambda)),yv=Math.pow(tan(eps/2),2);var eq=4*deg(yv*Math.sin(2*rad(L0))-2*e*Math.sin(rad(M))+4*e*yv*Math.sin(rad(M))*Math.cos(2*rad(L0))-.5*yv*yv*Math.sin(4*rad(L0))-1.25*e*e*Math.sin(2*rad(M)));return {decl:decl,eq:eq}}
+function hourAngle(alt,decl){return acos((sin(alt)-sin(LAT)*sin(decl))/(cos(LAT)*cos(decl)))/15}
+function compute(y,m,d){var jd=julian(y,m,d),sol=solar(jd+.5),noon=12+(4*LON-sol.eq)/-60+4; // equivalent to 12 + (timezone*60 - 4*longitude - equationOfTime)/60
+noon=12+(240-4*LON-sol.eq)/60;
+var rise=hourAngle(-.833,sol.decl),fajr=hourAngle(-18.2,sol.decl),isha=hourAngle(-18.2,sol.decl);var asrAlt=deg(Math.atan(1/(1+tan(Math.abs(LAT-sol.decl))))),asr=hourAngle(asrAlt,sol.decl);
+return [noon-fajr,noon-rise,noon,noon+asr,noon+rise,noon+isha].map(function(v){return Math.round(v*60)})}
+function clockTime(min){var h=mod(Math.floor(min/60),24),m=mod(min,60);return String(h%12||12).padStart(2,'0')+':'+String(m).padStart(2,'0')+' '+(h<12?'ص':'م')}
+function drawPrayer(){el('prayers').innerHTML=names.map(function(n,i){return '<div class="prayer" id="p'+i+'"><div class="name">'+n+'</div><div class="time">'+clockTime(timings[i])+'</div></div>'}).join('')}
+function update(){var now=new Date(),p=dubaiParts(now),key=p.y+'-'+p.m+'-'+p.day;if(key!==lastDay){lastDay=key;timings=compute(p.y,p.m,p.day);drawPrayer();el('greg').textContent=fmt(now,{weekday:'long',day:'numeric',month:'long',year:'numeric'});try{el('hijri').textContent=new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura',{timeZone:TZ,day:'numeric',month:'long',year:'numeric'}).format(now)+' هـ'}catch(e){el('hijri').textContent='التاريخ الهجري غير مدعوم في هذا المتصفح'}}var h12=p.h%12||12;el('hm').textContent=String(h12).padStart(2,'0')+':'+String(p.min).padStart(2,'0');el('sec').textContent=':'+String(p.sec).padStart(2,'0');el('ampm').textContent=p.h<12?'صباحاً':'مساءً';var current=p.h*60+p.min+p.sec/60,next=timings.findIndex(function(t,i){return i!==1&&t>current});var nextTime,nextName;if(next<0){next=0;var tomorrow=new Date(Date.UTC(p.y,p.m-1,p.day+1)),tp=compute(tomorrow.getUTCFullYear(),tomorrow.getUTCMonth()+1,tomorrow.getUTCDate());nextTime=1440+tp[0];nextName='الفجر'}else{nextTime=timings[next];nextName=names[next]}var remaining=Math.max(0,Math.ceil((nextTime-current)*60)),hh=Math.floor(remaining/3600),mm=Math.floor(remaining%3600/60),ss=remaining%60;el('countdown').textContent='القادمة: '+nextName+' خلال '+[hh,mm,ss].map(function(x){return String(x).padStart(2,'0')}).join(':');var elapsedPrayer=-1,elapsedName='';for(var k=0;k<timings.length;k++){if(k!==1&&current>=timings[k]&&current-timings[k]<2){elapsedPrayer=k;elapsedName=names[k]}}var box=el('prayerAlert');box.className='prayer-alert';if(elapsedPrayer>=0){box.classList.add('entered');el('alertLabel').textContent='حان الآن وقت صلاة '+elapsedName;el('alertHint').textContent='حفظكم الله وتقبّل صلاتكم';el('alertTime').textContent='حان وقت الصلاة';el('alertUnits').textContent='تنبيه بحسب التوقيت الحسابي التقريبي'}else{if(remaining<=300)box.classList.add('urgent');else if(remaining<=900)box.classList.add('soon');el('alertLabel').textContent='الصلاة القادمة: '+nextName;el('alertHint').textContent=remaining<=300?'اقترب موعد الصلاة — أقل من 5 دقائق':remaining<=900?'استعد للصلاة — أقل من 15 دقيقة':'الوقت المتبقي حتى الصلاة';el('alertTime').textContent=[hh,mm,ss].map(function(x){return String(x).padStart(2,'0')}).join(':');el('alertUnits').textContent='ساعة : دقيقة : ثانية'}document.querySelectorAll('.prayer').forEach(function(node,i){node.classList.toggle('active',i===next)});}
+var content={kahf:['سورة الكهف','سورة الكهف (110 آيات). لا يتضمن هذا الملف النص القرآني الكامل منعاً لعرض نص غير مدقَّق. يمكن إضافة نص موثوق مُراجع داخل الملف لتصبح القراءة متاحة دون إنترنت.'],baqarah:['سورة البقرة','سورة البقرة (286 آية). هذه بطاقة تمهيدية، وليست مشغلاً صوتياً أو نسخة كاملة من المصحف. أضف نصاً قرآنياً موثقاً بعد مراجعته.'],morning:['أذكار الصباح','آية الكرسي (البقرة: 255)\nسورة الإخلاص والمعوذتان (ثلاث مرات)\n«أصبحنا وأصبح الملك لله، والحمد لله...»\nهذه قائمة تذكيرية مختصرة، وليست نصوص الأذكار الكاملة.'],evening:['أذكار المساء','آية الكرسي (البقرة: 255)\nسورة الإخلاص والمعوذتان (ثلاث مرات)\n«أمسينا وأمسى الملك لله، والحمد لله...»\nهذه قائمة تذكيرية مختصرة، وليست نصوص الأذكار الكاملة.']};
+function close(){el('dialog').classList.remove('open');if(lastFocus)lastFocus.focus()};document.querySelectorAll('.tile').forEach(function(b){b.addEventListener('click',function(){lastFocus=b;var c=content[b.dataset.key];el('dialog-title').textContent=c[0];el('dialog-content').textContent=c[1];el('dialog').classList.add('open');el('close').focus()})});el('close').addEventListener('click',close);document.addEventListener('keydown',function(e){if((e.key==='Escape'||e.key==='Backspace')&&el('dialog').classList.contains('open')){e.preventDefault();close()}if(el('dialog').classList.contains('open'))return;var buttons=Array.prototype.slice.call(document.querySelectorAll('.tile')),idx=buttons.indexOf(document.activeElement);if(['ArrowLeft','ArrowRight'].includes(e.key)&&idx>=0){e.preventDefault();buttons[mod(idx+(e.key==='ArrowLeft'?1:-1),buttons.length)].focus()}});
+var panel=el('settingsPanel'),trigger=el('settingsButton'),dismiss=el('settingsClose');
+trigger.addEventListener('click',function(){panel.classList.add('open');dismiss.focus()});
+dismiss.addEventListener('click',function(){panel.classList.remove('open');trigger.focus()});
+Array.prototype.forEach.call(document.querySelectorAll('[data-mode]'),function(b){b.addEventListener('click',function(){document.body.classList.remove('soft','extra');if(b.dataset.mode!=='normal')document.body.classList.add(b.dataset.mode)})});
+Array.prototype.forEach.call(document.querySelectorAll('[data-position]'),function(b){b.addEventListener('click',function(){document.body.classList.remove('left-focus','right-focus');if(b.dataset.position==='left')document.body.classList.add('left-focus');if(b.dataset.position==='right')document.body.classList.add('right-focus')})});
+document.addEventListener('keydown',function(e){if(panel.classList.contains('open')&&(e.key==='Escape'||e.key==='Backspace')){e.preventDefault();dismiss.click()}});
+
+/* Authentic short, self-contained remembrances. No external audio or assets. */
+var adhkarItems=[
+ {group:'الصباح والمساء',text:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',meta:'مائة مرة في اليوم — صحيح مسلم'},
+ {group:'الصباح والمساء',text:'رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ نَبِيًّا',meta:'ثلاث مرات صباحًا ومساءً — ورد في السنن'},
+ {group:'ذكر عام',text:'سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ',meta:'من الأذكار المأثورة — صحيح مسلم'},
+ {group:'ذكر عام',text:'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',meta:'كنز من كنوز الجنة — الصحيحان'},
+ {group:'ذكر عام',text:'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ',meta:'ذكر الاستغفار'},
+ {group:'ذكر عام',text:'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ',meta:'من الصلاة على النبي ﷺ'}
+];
+var dhikrIndex=0,dhikrPaused=false,dhikrLast=Date.now();
+function showDhikr(){var d=adhkarItems[dhikrIndex];el('dhikrHeading').textContent='أذكار — '+d.group;el('dhikrText').textContent=d.text;el('dhikrMeta').textContent=(dhikrIndex+1)+' من '+adhkarItems.length+' • '+d.meta;el('dhikrPause').textContent=dhikrPaused?'استئناف التبديل':'إيقاف التبديل'}
+function stepDhikr(delta){dhikrIndex=(dhikrIndex+delta+adhkarItems.length)%adhkarItems.length;dhikrLast=Date.now();showDhikr()}
+el('dhikrPrev').addEventListener('click',function(){stepDhikr(-1)});
+el('dhikrNext').addEventListener('click',function(){stepDhikr(1)});
+el('dhikrPause').addEventListener('click',function(){dhikrPaused=!dhikrPaused;dhikrLast=Date.now();showDhikr()});
+/* TV remote: focus buttons with arrows; OK activates; Back closes settings. */
+document.addEventListener('keydown',function(e){if(el('settingsPanel').classList.contains('open')||el('dialog').classList.contains('open'))return;
+ var controls=[el('dhikrPrev'),el('dhikrPause'),el('dhikrNext'),el('settingsButton')];var pos=controls.indexOf(document.activeElement);
+ if(pos>=0&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){e.preventDefault();controls[(pos+(e.key==='ArrowLeft'?1:-1)+controls.length)%controls.length].focus()}
+ if(pos>=0&&(e.key==='ArrowDown'||e.key==='ArrowUp')){e.preventDefault();controls[(pos+(e.key==='ArrowDown'?1:-1)+controls.length)%controls.length].focus()}
+});
+showDhikr();setInterval(function(){if(!dhikrPaused&&Date.now()-dhikrLast>=25000){stepDhikr(1)}},1000);
+
+update();setInterval(update,1000);
+})();
+</script>
+</body></html>
